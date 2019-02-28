@@ -3,7 +3,8 @@
     <head>
         <title>Nice Pick</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="style.css"
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="icon" type="image/png" href="Ressources/logo.png"/>
     </head>
     <body>
         <div id="header">
