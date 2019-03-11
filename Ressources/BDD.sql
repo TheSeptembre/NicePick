@@ -22,8 +22,8 @@ CREATE TABLE HEROS(
         id_counter       Int NOT NULL ,
         id_heros         Int NOT NULL ,
         nom_heros        Varchar (15) NOT NULL ,
-        image_mini_heros Varchar (15) NOT NULL ,
-        image_maxi_heros Varchar (15) NOT NULL ,
+        image_mini_heros Varchar (500) NOT NULL ,
+        image_maxi_heros Varchar (500) NOT NULL ,
         type_heros       Varchar (15) NOT NULL ,
         force_counter    Int NOT NULL
 	,CONSTRAINT HEROS_PK PRIMARY KEY (id_counter,id_heros)
@@ -39,10 +39,10 @@ CREATE TABLE HEROS(
 CREATE TABLE JOUEUR(
         id_joueur     Int NOT NULL ,
         pseudo_joueur Varchar (15) NOT NULL ,
-        email_joueur  Varchar (15) NOT NULL ,
-        mdp_joueur    Varchar (15) NOT NULL ,
-        rang_joueur   Varchar (15) NOT NULL ,
-        avatar_joueur Varchar (15) NOT NULL ,
+        email_joueur  Varchar (100) NOT NULL ,
+        mdp_joueur    Varchar (30) NOT NULL ,
+        rang_joueur   Int NOT NULL ,
+        avatar_joueur Varchar (500) NOT NULL ,
         poste_joueur  Varchar (15) NOT NULL ,
         id_counter    Int NOT NULL ,
         id_heros      Int NOT NULL
@@ -59,8 +59,8 @@ CREATE TABLE JOUEUR(
 CREATE TABLE EQUIPE(
         id_equipe     Int NOT NULL ,
         nom_equipe    Varchar (15) NOT NULL ,
-        slogan_equipe Varchar (15) NOT NULL ,
-        avatar_equipe Varchar (15) NOT NULL ,
+        slogan_equipe Varchar (100) NOT NULL ,
+        avatar_equipe Varchar (500) NOT NULL ,
         id_joueur     Int NOT NULL
 	,CONSTRAINT EQUIPE_PK PRIMARY KEY (id_equipe)
 
@@ -75,8 +75,8 @@ CREATE TABLE EQUIPE(
 CREATE TABLE COACH(
         id_coach     Int NOT NULL ,
         pseudo_coach Varchar (15) NOT NULL ,
-        email_coach  Varchar (15) NOT NULL ,
-        mdp_coach    Varchar (15) NOT NULL ,
+        email_coach  Varchar (100) NOT NULL ,
+        mdp_coach    Varchar (30) NOT NULL ,
         id_equipe    Int NOT NULL
 	,CONSTRAINT COACH_PK PRIMARY KEY (id_coach)
 
