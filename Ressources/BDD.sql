@@ -39,11 +39,11 @@ CREATE TABLE HEROS(
 #------------------------------------------------------------
 
 CREATE TABLE SORT(
-	id_sort          Int NOT NULL ,
-	id_heros         Int NOT NULL ,
-	touche_sort      Varchar(30) NOT NULL ,
-	nom_sort         Varchar(30) NOT NULL , 
-	description_sort Varchar(500) NOT NULL ,
+	id_sort           Int NOT NULL ,
+	id_heros          Int NOT NULL ,
+	touche_sort       Varchar(30) NOT NULL ,
+	nom_sort          Varchar(30) NOT NULL , 
+	description_sort  Varchar(500) NOT NULL ,
 	rechargement_sort Float NOT NULL
 	,CONSTRAINT SORT_PK PRIMARY KEY (id_sort)
 )ENGINE=InnoDB;
