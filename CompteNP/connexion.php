@@ -7,7 +7,7 @@ if(isset($_POST['formconnexion'])) {
    $pseudoconnect = ($_POST['pseudoconnect']);
    $mdpconnect =($_POST['mdpconnect']);
    if(!empty($pseudoconnect) AND !empty($mdpconnect)) {
-      $requser = $bdd->prepare("SELECT * FROM etudiant WHERE pseudo = ? ");
+      $requser = $bdd->prepare("SELECT * FROM joueur WHERE pseudo = ? ");
       $requser->execute(array($pseudoconnect));
       $userinfo = $requser->fetch();
       if($userinfo)  {
