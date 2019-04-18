@@ -1,4 +1,4 @@
-<?php
+<?joueur
 session_start();
 
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=projet_open;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE =>PDO::ERRMODE_EXCEPTION));
@@ -13,10 +13,10 @@ if(isset($_POST['formconnexion'])) {
       if($userinfo)  {
         $mdpverif = password_verify($mdpconnect,$userinfo['motdepasse']);
          if($mdpverif ){
-         $_SESSION['idetu'] = $userinfo['idetu'];
+         $_SESSION['idjoueur'] = $userinfo['idjoueur'];
          $_SESSION['pseudo'] = $userinfo['pseudo'];
          $_SESSION['motdepasse'] = $userinfo['motdepasse'];
-       header("Location: profil.php?idetu=".$_SESSION['idetu']);
+       header("Location: profil.php?idjoueur=".$_SESSION['idjoueur']);
           }else{
           $erreur = "Pseudo ou mot de passe incorrecte !";
           }
@@ -53,7 +53,7 @@ if(isset($_POST['formconnexion'])) {
       <li class="dropdown">
         <a href="javascript:void(0)" class="dropbtn">Mon profil</a>
           <div class="dropdown-content">
-            <a href="profil.php?idetu=<?php echo $_SESSION['idetu'];?>">Voir</a>
+            <a href="profil.php?idjoueur=<?php echo $_SESSION['idjoueur'];?>">Voir</a>
             <a href="editionprofile.php">Editer</a>
           </div>
       <li class="dropdown">
