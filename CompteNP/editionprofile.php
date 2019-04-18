@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$bdd = new PDO('mysql:host=mysql-pierreyann.alwaysdata.net;dbname=pierreyann_clubepsiwis;charset=utf8', '174118', 'PierreYann', array(PDO::ATTR_ERRMODE =>PDO::ERRMODE_EXCEPTION));
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=heros;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE =>PDO::ERRMODE_EXCEPTION));
 
 if(isset($_SESSION['idetu'])) {
    $requser = $bdd->prepare("SELECT * FROM etudiant WHERE idetu = ?");
