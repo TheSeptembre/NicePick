@@ -83,7 +83,7 @@ $mail2 = ($_POST['mail2']);
       <li class="dropdown">
         <a href="javascript:void(0)" class="dropbtn">Mon profil</a>
           <div class="dropdown-content">
-            <a href="profil.php?idetu=<?php echo $_SESSION['idetu'];?>">Voir</a>
+            <a href="profil.php?idjoueur=<?php echo $_SESSION['idjoueur'];?>">Voir</a>
             <a href="editionprofile.php">Editer</a>
           </div>
       <li class="dropdown">
