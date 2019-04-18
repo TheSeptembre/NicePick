@@ -4,31 +4,30 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=projet_open;charset=utf8', 'root', '
 
 if(isset($_POST['inscrit'])) {
 $pseudo = ($_POST['pseudo']);
-$nom = ($_POST['nom']);
-$prenom = ($_POST['prenom']);
-$age = ($_POST['age']);
+$rang = ($_POST['rang']);
+$poste = ($_POST['poste']);
 $mdp = ($_POST['mdp']);
 $mdp2 = ($_POST['mdp2']);
 $mail = ($_POST['mail']);
 $mail2 = ($_POST['mail2']);
-   if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['age']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']) AND !empty($_POST['mail']) AND !empty($_POST['mail2'])
+   if(!empty($_POST['nom']) AND !empty($_POST['rang']) AND !empty($_POST['poste']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']) AND !empty($_POST['mail']) AND !empty($_POST['mail2'])
    AND !empty($_POST['pseudo'])) {
       $pseudolength = strlen($pseudo);
       if($pseudolength <= 255) {
          if($mail == $mail2) {
             if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-               $reqmail = $bdd->prepare("SELECT * FROM etudiant WHERE mail = ?");
+               $reqmail = $bdd->prepare("SELECT * FROM joueur WHERE mail = ?");
                $reqmail->execute(array($mail));
                $mailexist = $reqmail->rowCount();
                if($mailexist == 0) {
-                 $reqpseudo = $bdd->prepare("SELECT * FROM etudiant WHERE pseudo = ?");
+                 $reqpseudo = $bdd->prepare("SELECT * FROM joueur WHERE pseudo = ?");
                  $reqpseudo->execute(array($pseudo));
                  $pseudoexist = $reqpseudo->rowCount();
                  if($pseudoexist == 0) {
                     if($mdp == $mdp2) {
                       $mdp = password_hash($_POST['mdp'],PASSWORD_DEFAULT);
-                       $insertetu = $bdd->prepare("INSERT INTO etudiant(pseudo, prenom, nom, age, mail, groupe, niveaux, motdepasse) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-                       $insertetu->execute(array($pseudo, $prenom, $nom, $age, $mail, $groupe, $niveaux, $mdp ));
+                       $insertjoueur = $bdd->prepare("INSERT INTO joueur(pseudo, rang, poste, mail, motdepasse) VALUES(?, ?, ?, ?, ?, ?)");
+                       $insertjoueur->execute(array($pseudo, $rang, $poste, $mail, $mdp ));
                        $erreur = "Votre compte a bien été créé ! <a href=\"connexion.php\">Me connecter</a>";
                       } else {
                          $erreur = "Vos mots de passes ne correspondent pas !";
@@ -74,7 +73,7 @@ $mail2 = ($_POST['mail2']);
     <ul>
       <li><a href="index.php" style="text-decoration: none">Accueil</a></li>
       <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">Les clubs</a>
+        <a href="javascript:void(0)" class="dropbtn">NicePick</a>
           <div class="dropdown-content">
             <a href="creation.php">Création</a>
             <a href="adhesion.php">Rejoindre</a>
@@ -110,24 +109,18 @@ $mail2 = ($_POST['mail2']);
    </tr>
     <tr>
     <td align="right">
-    <label for="prenom">Prénom :</label>
+    <label for="rang">rang :</label>
     </td>
     <td>
-       <input type="text" placeholder="Prénom" id="prenom" name="prenom" value="<?php if(isset($prenom)) { echo $prenom; } ?>" />
+       <input type="text" placeholder="Bronze1, Gold3, Diamand2...." id="rang" name="rang" value="<?php if(isset($rang)) { echo $rang; } ?>" />
     </td>
  </tr>
- <tr>
-  <td align="right">
-  <label for="nom">Nom :</label>
-</td>
-  <td><input type="text" placeholder="Nom" id="nom" name="nom"></td>
-</tr>
 <tr>
     <td align="right">
-    <label for="Age">Age :</label>
+    <label for="poste">poste :</label>
   </td>
-  <td><input type="text" placeholder="18, 19 ... 22 ans" id="age" name="age"></td>
-</tr>
+  <td><input type="text" placeholder="Mid, adc, top,..." id="poste" name="poste"></td>
+</tr>poste
  <tr>
     <td align="right">
     <label for="mail">Mail :</label>
