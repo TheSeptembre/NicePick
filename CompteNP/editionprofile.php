@@ -1,49 +1,49 @@
-<?php
+idjoueur<?php
 session_start();
 
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=projet_open;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE =>PDO::ERRMODE_EXCEPTION));
 
-if(isset($_SESSION['idetu'])) {
-   $requser = $bdd->prepare("SELECT * FROM etudiant WHERE idetu = ?");
-   $requser->execute(array($_SESSION['idetu']));
+if(isset($_SESSION['idjoueur'])) {
+   $requser = $bdd->prepare("SELECT * FROM etudiant WHERE idjoueur = ?");
+   $requser->execute(array($_SESSION['idjoueur']));
    $user = $requser->fetch();
    if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $user['pseudo']) {
       $newpseudo = htmlspecialchars($_POST['newpseudo']);
-      $insertpseudo = $bdd->prepare("UPDATE etudiant SET pseudo = ? WHERE idetu = ?");
-      $insertpseudo->execute(array($newpseudo, $_SESSION['idetu']));
-      if ($pseudoerror == 0) {     header('Location: profil.php?idetu='.$_SESSION['idetu']);
+      $insertpseudo = $bdd->prepare("UPDATE etudiant SET pseudo = ? WHERE idjoueur = ?");
+      $insertpseudo->execute(array($newpseudo, $_SESSION['idjoueur']));
+      if ($pseudoerror == 0) {     header('Location: profil.php?idjoueur='.$_SESSION['idjoueur']);
 
    }
    if(isset($_POST['newnom']) AND !empty($_POST['newnom']) AND $_POST['newnom'] != $user['nom']) {
       $newnom = htmlspecialchars($_POST['newnom']);
-      $insertnom = $bdd->prepare("UPDATE etudiant SET nom = ? WHERE idetu = ?");
-      $insertnom->execute(array($newnom, $_SESSION['idetu']));
+      $insertnom = $bdd->prepare("UPDATE etudiant SET nom = ? WHERE idjoueur = ?");
+      $insertnom->execute(array($newnom, $_SESSION['idjoueur']));
    }
    if(isset($_POST['newprenom']) AND !empty($_POST['newprenom']) AND $_POST['newprenom'] != $user['prenom']) {
       $newprenom = htmlspecialchars($_POST['newprenom']);
-      $insertprenom = $bdd->prepare("UPDATE etudiant SET prenom = ? WHERE idetu = ?");
-      $insertprenom->execute(array($newprenom, $_SESSION['idetu']));
+      $insertprenom = $bdd->prepare("UPDATE etudiant SET prenom = ? WHERE idjoueur = ?");
+      $insertprenom->execute(array($newprenom, $_SESSION['idjoueur']));
 
    }
    if(isset($_POST['newage']) AND !empty($_POST['newage']) AND $_POST['newage'] != $user['age']) {
       $newage = htmlspecialchars($_POST['newage']);
-      $insertage = $bdd->prepare("UPDATE etudiant SET datenaiss = ? WHERE idetu = ?");
-      $insertage->execute(array($newage, $_SESSION['idetu']));
+      $insertage = $bdd->prepare("UPDATE etudiant SET datenaiss = ? WHERE idjoueur = ?");
+      $insertage->execute(array($newage, $_SESSION['idjoueur']));
    }
 
    if(isset($_POST['newmail']) AND !empty($_POST['newmail']) AND $_POST['newmail'] != $user['mail']) {
      if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
       $newmail = htmlspecialchars($_POST['newmail']);
-      $insertmail = $bdd->prepare("UPDATE etudiant SET mail = ? WHERE idetu = ?");
-      $insertmail->execute(array($newmail, $_SESSION['idetu']));
-      if ($mailerror == 0) {    header('Location: profil.php?idetu='.$_SESSION['idetu']);
+      $insertmail = $bdd->prepare("UPDATE etudiant SET mail = ? WHERE idjoueur = ?");
+      $insertmail->execute(array($newmail, $_SESSION['idjoueur']));
+      if ($mailerror == 0) {    header('Location: profil.php?idjoueur='.$_SESSION['idjoueur']);
    }
    if(isset($_POST['newmdp1']) AND !empty($_POST['newmdp1']) AND isset($_POST['newmdp2']) AND !empty($_POST['newmdp2'])) {
       $mdp1 = sha1($_POST['newmdp1']);
       $mdp2 = sha1($_POST['newmdp2']);
       if($mdp1 == $mdp2) {
-         $insertmdp = $bdd->prepare("UPDATE etudiant SET motdepasse = ? WHERE idetu = ?");
-         $insertmdp->execute(array($mdp1, $_SESSION['idetu']));
+         $insertmdp = $bdd->prepare("UPDATE etudiant SET motdepasse = ? WHERE idjoueur = ?");
+         $insertmdp->execute(array($mdp1, $_SESSION['idjoueur']));
       } else {
          $msg = "Vos deux mdp ne correspondent pas !";
       }
@@ -80,7 +80,7 @@ if(isset($_SESSION['idetu'])) {
       <li class="dropdown">
         <a href="javascript:void(0)" class="dropbtn">Mon profil</a>
           <div class="dropdown-content">
-            <a href="profil.php?idetu=<?php echo $_SESSION['idetu'];?>">Voir</a>
+            <a href="profil.php?idjoueur=<?php echo $_SESSION['idjoueur'];?>">Voir</a>
             <a href="editionprofile.php">Editer</a>
           </div>
       <li class="dropdown">
